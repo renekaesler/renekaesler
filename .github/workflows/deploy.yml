@@ -16,7 +16,13 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           path: public
-
+  publish_en:
+    needs: build
+    uses: ./.github/workflows/push-to-repository.yml
+    with:
+      repository: renekaesler/renekaesler.com
+      files: artifact/en/.
+    secrets: inherit
   publish_de:
     needs: build
     uses: ./.github/workflows/push-to-repository.yml
@@ -25,10 +31,4 @@ jobs:
       files: artifact/de/.
     secrets: inherit
 
-  publish_en:
-    needs: build
-    uses: ./.github/workflows/push-to-repository.yml
-    with:
-      repository: renekaesler/renekaesler.com
-      files: artifact/en/.
-    secrets: inherit
+  
