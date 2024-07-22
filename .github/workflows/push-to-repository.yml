@@ -1,0 +1,38 @@
+name: push to repository
+
+on:
+  workflow_call:
+    inputs:
+      repository:
+        description: 'the repository the files should be pushed to'
+        required: true
+        type: string
+      files:
+        description: 'artefacts that need to be pushed'
+        required: true
+        type: string
+    secrets:
+      ACTIONS_GITHUB_TOKEN:
+        required: true
+
+jobs:
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.repository }}
+          ref: main
+          token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - uses: actions/download-artifact@v4
+      - run: |
+          rm -rf docs
+          cp -r ${{ inputs.files }} docs
+          git add docs
+          git commit -m 'Automated Publishing - renekaesler'
+      - run: git push
