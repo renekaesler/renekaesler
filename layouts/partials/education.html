@@ -1,0 +1,30 @@
+<section class="s-education grid">
+  <header class="grid__header frame-top">
+    <h1 class="title">{{ .Params.title }}</h1>
+    <p class="subtitle">{{ .Params.subtitle }}</p>
+  </header>
+
+  <div class="grid__body">
+    <div class="timeline frame-top">
+      <section class="timeline__section">
+        <header class="timeline__abstract">
+          <span class="timeline__time">
+            <time  datetime="{{ .Params.from }}">{{ .Params.from }}</time> -
+            <time  datetime="{{ .Params.to }}">{{ .Params.to }}</time>
+          </span>
+
+          <h2 class="timeline__title">{{ .Params.institution }}</h2>
+
+          <p>
+            <span class="subtitle">{{ .Params.university }}</span>
+            <small class="caption">{{ .Params.location }}</small>
+          </p>
+
+          <p>{{ .Params.degree }}</p>
+        </header>
+
+        <div class="timeline__description">{{ .Content }}</div>
+      </section>
+    </div>
+  </div>
+</section>

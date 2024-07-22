@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author"       content="{{ .Site.Params.author }}">
+    <meta name="description"  content="{{ .Site.Params.description }}">
+    <meta name="keywords"     content="{{ .Site.Params.keywords }}">
+    <meta name="viewport"     content="width=device-width, initial-scale=1.0">
+
+    {{- $options := (dict "includePaths" (slice "node_modules")) -}}
+    {{ $style := resources.Get "styles/main.scss" | resources.ToCSS $options | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
+    <link rel="apple-touch-icon"  type="image/png"    sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="shortcut icon"     type="image/x-icon"                 href="/favicon.ico">
+    <link rel="icon"              type="image/png"    sizes="32x32"   href="/favicon-32x32.png">
+    <link rel="icon"              type="image/png"    sizes="16x16"   href="/favicon-16x16.png">
+    <link rel="manifest"                                              href="/site.webmanifest">
+
+    <title>{{ .Title }}</title>
+  </head>
+  <body class="no-js">
+    <script>document.body.classList.replace('no-js', 'js');</script>
+
+    {{ partial "vcard.html" . }}
+    {{ partial "intro.html" (.Site.GetPage "/intro") }}
+    {{ partial "expertise.html" (.Site.GetPage "/expertise") }}
+    {{ partial "education.html" (.Site.GetPage "/education") }}  
+
+    {{ $built := resources.Get "js/index.js" | js.Build (dict "minify" true "target" "es2015")| resources.Fingerprint }}
+    <script type="text/javascript" src="{{ $built.RelPermalink }}" defer></script>
+  </body>
+</html>

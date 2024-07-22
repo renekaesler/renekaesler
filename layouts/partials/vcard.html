@@ -1,0 +1,60 @@
+{{ $vcard     := (.Site.GetPage "/vcard").Params }}
+{{ $currLang  := .Site.Language.Lang }}
+
+<section class="s-vcard grid vcard">
+  <div class="grid__body">
+    <header class="s-vcard__info">
+      <h1 class="title fn n">
+        <span class="given-name">{{ $vcard.givenName }}</span>
+        <span class="family-name">{{ $vcard.familyName }}</span>
+      </h1>
+  
+      <p class="subtitle">{{ $vcard.subtitle }}</p>
+  
+      <div class="social-media">
+        {{ range $vcard.socialMedia }}
+          <a class="social-media__channel" href="{{ .link }}">
+            <img  src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/{{ .icon }}.svg"
+                  height="32" 
+                  width="32"
+                  alt="{{ .icon }}" />
+          </a>
+        {{ end }}
+      </div>
+    </header>
+
+    <nav class="s-vcard__languages">
+      {{ range $.Site.Home.AllTranslations }}
+        <a  class="btn {{ if eq $currLang .Language.Lang }}btn--active{{ end }}"
+            href="{{ .Permalink }}">{{ .Language.Lang }}</a>
+      {{ end }}
+    </nav>
+  </div>
+
+  <div class="grid__header" characters="/characters.png" style="background: black;">
+    <img class="photo" src="/avatar.jpg" alt="avatar" />
+    <canvas is="binary-effect">
+      <script>
+        Object.assign(document.currentScript.parentElement, {
+          imageSrc: '/avatar.jpg',
+          charactersSrc: 'characters.png',
+          smoothness: 0.2,
+          characterScaling: 0.35,
+          duration: 4000,
+          delay: 1000,
+        });
+      </script>
+    </canvas>
+  </div>
+
+  <footer class="grid__footer">
+    <ul class="contact">
+      {{ range $vcard.contact }}
+        <li class="contact__channel">
+          <strong class="overline">{{ T .type }}</strong>
+          <div class="phone">{{ .value }}</div>
+        </li>
+      {{ end }}
+    </ul>
+  </footer>
+</section>

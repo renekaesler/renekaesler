@@ -1,0 +1,73 @@
+.s-vcard {
+  min-height: 100%;
+
+  .grid__body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1rem;
+
+    @include media('<medium') {
+      grid-area: gridheader;
+      text-shadow: 0 0 5px #000;
+      color: #ddd;
+
+      img { filter: invert(80%); }
+    }
+  }
+
+  .grid__header {
+    padding: 0;
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    border: none;
+
+    background-color: #000;
+  }
+
+  &__info {
+    align-self: center;
+    justify-self: center;
+    margin: auto
+  }
+
+  &__languages { position: absolute; }
+
+  .subtitle {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
+  .photo, canvas {
+    display: block;
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+
+  .photo {
+    .js & { display: none; }
+  }
+
+  .fn { margin: 0 0 1rem; }
+
+  .given-name {
+    display: block;
+    text-transform: lowercase;
+  }
+
+  .family-name {
+    display: block;
+
+    text-transform: uppercase;
+
+    color: $primary;
+  }
+}

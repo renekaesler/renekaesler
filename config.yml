@@ -1,0 +1,27 @@
+DefaultContentLanguage: de
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+title: René Kaesler - Portfolio
+
+params:
+  author: René Kaesler
+
+languages:
+  en:
+    baseURL: https://renekaesler.com
+    contentDir: content/en
+    languageName: English
+    params:
+      keywords: portfolio, developer, architect 
+      description: 'Software Developer & Frontend Expert: Experienced API developer & specialized in computer graphics.'
+  de:
+    baseURL: https://renekaesler.de
+    contentDir: content/de
+    languageName: Deutsch
+    params:
+      keywords: Portfolio, Architekt, Entwickler
+      description: 'Softwareentwickler & Frontend Experte: Erfahrener Schnittstellenentwickler & spezialisiert auf Computergrafik.'

@@ -1,0 +1,45 @@
+@use "sass:map";
+
+.grid {
+  display: grid;
+
+  grid-template-areas:
+    "gridheader"
+    "gridbody"
+    "gridfooter";
+  grid-template-rows: 1fr auto auto;
+
+  @include media('>=medium') {
+    grid-template-columns:
+      1fr
+      unquote("min(31.8%, #{map-get($breakpoints, large) * 0.318})")
+      unquote("min(68.2%, #{map-get($breakpoints, large) * 0.682})")
+      1fr;
+    grid-template-areas:
+      "gridheader gridheader gridbody   ."
+      "gridheader gridheader gridfooter .";
+  }
+
+  &__header {
+    grid-area: gridheader;
+
+    @include media('>=medium') { text-align: right; }
+  }
+
+  &__body   { grid-area: gridbody; }
+  &__footer { grid-area: gridfooter; }
+
+  &__header, &__body, &__footer {
+    padding: 0 1.5rem;
+
+    @include media('>=small') { padding: 0 3rem; }
+    @include media('>=large') { padding: 0 4rem; }
+  }
+}
+
+.frame-top {
+  padding-top: 1rem;
+
+  @include media('>=medium')  { padding-top: 3rem; }
+  @include media('>=large')   { padding-top: 4rem; }
+}

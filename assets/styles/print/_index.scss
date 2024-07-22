@@ -1,0 +1,100 @@
+@import '../utils';
+
+/* latin */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-weight: 300;
+  font-style: normal;
+
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotoslab/v12/BngMUXZYTXPIvIBgJJSb6ufN5qU.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  font-style: normal;
+
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotoslab/v12/BngMUXZYTXPIvIBgJJSb6ufN5qU.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Roboto Slab';
+  font-weight: 500;
+  font-style: normal;
+
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotoslab/v12/BngMUXZYTXPIvIBgJJSb6ufN5qU.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@include media('print') {
+  @page { margin: 1.5cm 2cm; }
+
+  html { font-family: 'Roboto Slab', serif; }
+
+  body { color: $gray-600; }
+
+  section.grid { page-break-after: always; }
+
+  abbr { text-decoration: none; }
+
+  .grid__header { margin-bottom: 1.0rem; }
+
+  .timeline {
+    &__section { 
+      position: relative;
+      display: block;
+    }
+
+    &__abstract {
+      position: relative;
+
+      display: block;
+
+      page-break-before: auto;
+      page-break-after: auto;
+      page-break-inside: avoid;
+    }
+  }
+
+  .s-vcard {
+    column-gap: 2rem;
+    grid-template-columns: 1fr 200px auto 1fr;
+    grid-template-areas:
+      ".          gridheader gridbody   ."
+      "gridfooter gridfooter gridfooter gridfooter";
+
+    .grid__body {
+      color: inherit;
+      text-shadow: none;
+
+      grid-area: gridbody;
+    }
+
+    .grid__header {
+      align-self: center;
+
+      height: 200px;
+
+      border-radius: 50%;
+
+      grid-area: gridheader;
+    }
+
+    .grid__footer { grid-area:  gridfooter; }
+
+    canvas,
+    .social-media { display: none; }
+
+    .photo { display: block !important; }
+  }
+
+  .s-vcard__languages,
+  .s-education__download { display: none; }
+}

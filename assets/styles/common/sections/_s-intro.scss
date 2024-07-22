@@ -1,0 +1,21 @@
+.s-intro {
+  &__quote { 
+    text-align: center;
+
+    > * {
+      text-align: left;
+      display: inline-block;
+    }
+  }
+
+  &__conclusion { margin: 2rem 0; }
+
+  .grid__body { text-align: justify; }
+
+  
+  @include media('>small') {
+    &__quote { margin: auto; }
+
+    .blocky { display: block; }
+  }
+}

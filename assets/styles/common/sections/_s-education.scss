@@ -1,0 +1,21 @@
+.s-education {
+  margin-bottom: 2rem;
+
+  .grid__body { padding-top: 0 }
+
+  .timeline { padding-left: 1em; }
+
+  &__download {
+    @include button;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+    > img { 
+      width: 56px;
+      height: 56px;
+      padding: 10px;
+      margin-left: -10px;
+    }
+  }
+}

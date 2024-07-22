@@ -1,0 +1,44 @@
+<section class="s-expertise grid">
+  <header class="grid__header frame-top">
+    <h1 class="title">{{ .Title }}</h1>
+    <p class="subtitle">{{ .Params.subtitle }}</p>
+  </header>
+
+  <div class="grid__body frame-top">
+    <div class="timeline">
+      {{ range sort .Resources "Name" "desc"}}
+        <section class="timeline__section">
+          <header class="timeline__abstract">
+            <span class="timeline__time">
+              <time  datetime="{{ .Params.from }}">{{ .Params.from }}</time> -
+              {{ with .Params.to }}
+                <time  datetime="{{ . }}">{{ . }}</time>
+              {{ else }}
+                {{ T "now" }}
+              {{ end }}
+
+              | {{ .Params.employer }}
+            </span>
+
+            <h2 class="timeline__title">{{ .Params.customer }}</h2>
+
+            <p>
+              <span class="subtitle">{{ .Params.position }}</span>
+              <small class="caption">{{ .Params.location }}</small>
+            </p>
+
+            <p>{{ .Title }}</p>
+
+            <ul class="s-expertise__skills">
+              {{ range sort .Params.technologies }} 
+                <li class="s-expertise__skill badge">{{.}} </li>
+              {{ end }}
+            </ul>
+          </header>
+
+          <div class="timeline__description">{{ .Content }}</div>
+        </section>
+      {{ end }}
+    </div>
+  </div>
+</section>

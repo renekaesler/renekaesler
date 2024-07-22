@@ -1,0 +1,19 @@
+{
+  "name": "renekaesler",
+  "version": "1.0.0",
+  "description": "Personal Website of Rene Kaesler",
+  "main": "index.js",
+  "scripts": {
+    "dev": "hugo server -D",
+    "build": "hugo --minify"
+  },
+  "author": "Ren Kaesler",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "hugo-bin-extended": "^0.128.2",
+    "include-media": "^1.4.10"
+  },
+  "dependencies": {
+    "binary-effect": "^1.0.1"
+  }
+}

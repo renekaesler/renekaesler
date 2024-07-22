@@ -1,0 +1,14 @@
+[phone]
+other = "Telefon"
+
+[email]
+other = "Email"
+
+[location]
+other = "Ort"
+
+[web]
+other = "Web"
+
+[now]
+other = "dato"

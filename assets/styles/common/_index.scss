@@ -1,0 +1,82 @@
+@import '../utils';
+
+
+// basic styles
+
+* { box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body { @include body1; }
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0 0 1em;
+  padding: 0;
+}
+
+h1 { @include h2; }
+
+abbr { font-style: italic; }
+
+ul {
+  margin: 0 0 1em;
+  padding: 0 0 0 1em;
+
+  ul { margin-bottom: 0; }
+}
+
+blockquote {
+  margin-bottom: 32px;
+
+  font-style: italic;
+
+  > footer { @include caption; }
+}
+
+.caption    { @include caption; }
+.overline   { @include overline; }
+.subtitle   { @include subtitle1; }
+
+.img-fluid { 
+  max-width: 100%;
+  height: auto;
+}
+
+.grid__header {
+  @include media('<medium') {
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+  }
+
+  .title {
+    @include h4;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+}
+
+
+// components
+@import './animation';
+@import './badge';
+@import './grid';
+@import './btn';
+@import './contact';
+@import './social-media';
+@import './timeline';
+
+
+// sections
+@import './sections/s-intro';
+@import './sections/s-vcard';
+@import './sections/s-expertise';
+@import './sections/s-education';
+
+
+// shame
+@import '../shame.scss';

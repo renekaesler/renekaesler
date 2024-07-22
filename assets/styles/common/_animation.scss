@@ -1,0 +1,59 @@
+.js {
+  .s-vcard .grid__header {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: transform 0.4s, opacity 0.4s;
+  }
+
+  .given-name, 
+  .s-vcard__languages,
+  .family-name,
+  .s-vcard__info > .subtitle,
+  .social-media,
+  .contact,
+  .contact__channel,
+  .grid:not(.s-vcard) {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: transform 1s, opacity 1s;
+  }
+
+  .given-name,
+  .family-name                { transition-delay: 0.4s; }
+  .s-vcard__info > .subtitle  { transition-delay: 0.5s; }
+  .social-media               { transition-delay: 0.6s; }
+
+  .contact {
+    transition-delay: 0.6s;
+
+    &__channel {
+      @for $i from 1 through 4 {
+        &:nth-child(#{$i}) {
+          transition-delay: ($i * 0.15s) + 0.6s;
+        }
+      }
+    }
+  }
+
+  .s-vcard__languages,
+  .grid:not(.s-vcard) { transition-delay: 1.0s;}
+}
+
+.document-ready {
+  .s-vcard .grid__header {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .s-vcard__languages,
+  .given-name,
+  .family-name,
+  .s-vcard__info > .subtitle,
+  .social-media,
+  .s-vcard .contact,
+  .s-vcard .contact__channel,
+  .grid:not(.s-vcard) {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

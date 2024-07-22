@@ -1,0 +1,11 @@
+@import 'include-media/dist/include-media.scss';
+
+@import './colors.scss';
+@import './typo.scss';
+
+$breakpoints: (
+  small: 600px,
+  medium: 1024px,
+  large: 1440px,
+  xlarge: 1920px
+);

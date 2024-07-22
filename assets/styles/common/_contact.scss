@@ -1,0 +1,22 @@
+.contact {
+  display: grid;
+
+  padding: 1rem 0 0;
+
+  list-style: none;
+
+  text-align: center;
+
+  @include media('>=small') {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+  }
+  @include media('>=medium')  { border-top: 2px solid #ececec; }
+  @include media('>=large')   { grid-template-columns: repeat(4, 1fr);}
+
+  &__channel {
+    margin-bottom: 1em;
+ 
+    justify-self: center;
+  }
+}
