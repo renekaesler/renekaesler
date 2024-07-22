@@ -32,9 +32,9 @@ jobs:
           git config user.email "<>"
       - uses: actions/download-artifact@v4
       - run: |
-          cp -r artifact/en/. ./
-          rm -r artifact
-          git add .
+          rm -rf _site
+          cp -r artifact/en/. _site
+          git add _site
           git commit -m 'Automated Publishing - renekaesler'
       - run: git push
       
