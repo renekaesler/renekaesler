@@ -24,14 +24,14 @@ jobs:
           repository: ${{ inputs.repository }}
           ref: main
           token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
-      - name: setup git config
-        run: |
+      - run: rm -rf docs
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.files }}
+          path: docs
+      - run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-      - uses: actions/download-artifact@v4
-      - run: |
-          rm -rf docs
-          cp -r ${{ inputs.files }} docs
           git add docs
           git commit -m 'Automated Publishing - renekaesler'
-      - run: git push
+          git push

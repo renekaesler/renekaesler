@@ -15,20 +15,28 @@ jobs:
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:
-          path: public
-  publish_en:
-    needs: build
-    uses: ./.github/workflows/push-to-repository.yml
-    with:
-      repository: renekaesler/renekaesler.com
-      files: artifact/en/.
-    secrets: inherit
+          name: de_files
+          path: public/de/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: en_files
+          path: public/en/
+
   publish_de:
     needs: build
     uses: ./.github/workflows/push-to-repository.yml
     with:
       repository: renekaesler/renekaesler.de
-      files: artifact/de/.
+      files: de_files
     secrets: inherit
+
+  publish_en:
+    needs: build
+    uses: ./.github/workflows/push-to-repository.yml
+    with:
+      repository: renekaesler/renekaesler.com
+      files: en_files
+    secrets: inherit
+  
 
   
