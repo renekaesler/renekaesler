@@ -17,6 +17,14 @@ jobs:
         with:
           path: public
 
+  publish_de:
+    needs: build
+    uses: ./.github/workflows/push-to-repository.yml
+    with:
+      repository: renekaesler/renekaesler.de
+      files: artifact/de/.
+    secrets: inherit
+
   publish_en:
     needs: build
     uses: ./.github/workflows/push-to-repository.yml
@@ -24,25 +32,3 @@ jobs:
       repository: renekaesler/renekaesler.com
       files: artifact/en/.
     secrets: inherit
-
-  # publish_en:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4    
-  #       with:
-  #         repository: renekaesler/renekaesler.com
-  #         ref: main
-  #         token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
-  #     - name: setup git config
-  #       run: |
-  #         git config user.name "GitHub Actions Bot"
-  #         git config user.email "<>"
-  #     - uses: actions/download-artifact@v4
-  #     - run: |
-  #         rm -rf docs
-  #         cp -r artifact/en/. docs
-  #         git add docs
-  #         git commit -m 'Automated Publishing - renekaesler'
-  #     - run: git push
-      
