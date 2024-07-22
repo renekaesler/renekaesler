@@ -23,21 +23,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4    
         with:
-          path: dest
           repository: renekaesler/renekaesler.com
           ref: main
           token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
-      - uses: actions/download-artifact@v4
-        with:
-          path: public
       - name: setup git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
+      - uses: actions/download-artifact@v4
+        with:
+          path: public
       - run: |
-          cp -rvT public/en/ dest
-          rm -rf public
+          cp -r public/en/. ./
+          rm -r public
           git add .
-          git commit -m 'Auto Publish'
+          git commit -m 'Automated Publishing - renekaesler'
       - run: git push
       
