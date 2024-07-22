@@ -21,6 +21,22 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4    
+        with:
+          path: dest
+          ref: main
+          repository: renekaesler/renekaesler.com    
       - uses: actions/download-artifact@v4
-      - run: ls -R
+        with:
+          path: public
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - run: |
+          cp -rvT public/en/ dest
+          rm -rf public
+          git add .
+          git commit -m 'Auto Publish'
+      - run: git push
       
