@@ -24,7 +24,7 @@ jobs:
 
   publish_de:
     needs: build
-    uses: ./.github/workflows/push-to-repository.yml
+    uses: ./.github/workflows/publish.yml
     with:
       repository: renekaesler/renekaesler.de
       files: de_files
@@ -32,7 +32,7 @@ jobs:
 
   publish_en:
     needs: build
-    uses: ./.github/workflows/push-to-repository.yml
+    uses: ./.github/workflows/publish.yml
     with:
       repository: renekaesler/renekaesler.com
       files: en_files

@@ -1,14 +1,14 @@
-name: push to repository
+name: publish
 
 on:
   workflow_call:
     inputs:
       repository:
-        description: 'the repository the files should be pushed to'
+        description: 'repository that hosts the website'
         required: true
         type: string
-      files:
-        description: 'artefacts that need to be pushed'
+      site:
+        description: 'website artifacts'
         required: true
         type: string
     secrets:
@@ -24,14 +24,14 @@ jobs:
           repository: ${{ inputs.repository }}
           ref: main
           token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
-      - run: rm -rf docs
+      - run: rm -rf _site
       - uses: actions/download-artifact@v4
         with:
-          name: ${{ inputs.files }}
-          path: docs
+          name: ${{ inputs.site }}
+          path: _site
       - run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          git add docs
-          git commit -m 'Automated Publishing - renekaesler'
+          git add _site
+          git diff-index --quiet HEAD || git commit -m 'Auto Publish:  ${{ inputs.repository }}'
           git push
