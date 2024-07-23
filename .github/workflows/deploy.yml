@@ -15,11 +15,11 @@ jobs:
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:
-          name: de_files
+          name: de_site
           path: public/de/
       - uses: actions/upload-artifact@v4
         with:
-          name: en_files
+          name: en_site
           path: public/en/
 
   publish_de:
@@ -27,7 +27,7 @@ jobs:
     uses: ./.github/workflows/publish.yml
     with:
       repository: renekaesler/renekaesler.de
-      files: de_files
+      site: de_site
     secrets: inherit
 
   publish_en:
@@ -35,5 +35,5 @@ jobs:
     uses: ./.github/workflows/publish.yml
     with:
       repository: renekaesler/renekaesler.com
-      files: en_files
+      site: en_site
     secrets: inherit
